@@ -1,0 +1,236 @@
+<title>비만 통계 과제 대화록</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one reading column; each turn is a labeled question band followed by an answer body. Teal/magenta echo the men/women series of the source charts. */
+:root {
+  --bg: #f6f8f9;
+  --paper: #ffffff;
+  --ink: #1b2428;
+  --muted: #5a676d;
+  --line: #dde4e7;
+  --teal: #0f7c74;
+  --teal-soft: #e3f2f0;
+  --magenta: #a8407f;
+  --warn-bg: #fff4e5;
+  --warn-ink: #8a4b00;
+  --font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12181b; --paper: #1a2226; --ink: #e4ebee; --muted: #9aa8ae; --line: #2c373c;
+    --teal: #4cc2b6; --teal-soft: #173431; --magenta: #e07ab8; --warn-bg: #3a2a12; --warn-ink: #f3c27a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12181b; --paper: #1a2226; --ink: #e4ebee; --muted: #9aa8ae; --line: #2c373c;
+  --teal: #4cc2b6; --teal-soft: #173431; --magenta: #e07ab8; --warn-bg: #3a2a12; --warn-ink: #f3c27a;
+  color-scheme: dark;
+}
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.75;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 64px;
+}
+main { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+header { display: flex; flex-direction: column; gap: 12px; border-bottom: 2px solid var(--ink); padding-bottom: 24px; }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; color: var(--teal); text-transform: uppercase; }
+h1 { font-size: clamp(26px, 5vw, 34px); line-height: 1.3; margin: 0; text-wrap: balance; }
+.meta { color: var(--muted); font-size: 14px; margin: 0; }
+.note { font-size: 14px; color: var(--muted); background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 12px 16px; margin: 0; }
+.turn { display: flex; flex-direction: column; gap: 16px; }
+.q { background: var(--teal-soft); border-left: 4px solid var(--teal); padding: 16px 20px; border-radius: 0 6px 6px 0; }
+.label { font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; font-weight: 500; display: block; margin-bottom: 6px; }
+.q .label { color: var(--teal); }
+.q p { margin: 0 0 8px; }
+.q p:last-child { margin-bottom: 0; }
+.q ol { margin: 4px 0 0; padding-left: 22px; }
+.a { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 20px 22px; min-width: 0; }
+.a .label { color: var(--magenta); }
+.a h3 { font-size: 17px; margin: 24px 0 8px; }
+.a h3:first-of-type { margin-top: 4px; }
+.a p, .a ul, .a ol { margin: 0 0 12px; }
+.a ul, .a ol { padding-left: 22px; }
+.a li { margin-bottom: 4px; }
+.warn { background: var(--warn-bg); color: var(--warn-ink); border-radius: 6px; padding: 12px 16px; margin: 12px 0; font-size: 15px; }
+.table-wrap { overflow-x: auto; margin: 8px 0 16px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums; }
+th, td { border-bottom: 1px solid var(--line); padding: 7px 10px; text-align: right; white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { font-weight: 500; color: var(--muted); }
+td strong { color: var(--teal); }
+caption { text-align: left; font-size: 13px; color: var(--muted); padding-bottom: 6px; }
+.small { font-size: 13px; color: var(--muted); }
+footer { border-top: 1px solid var(--line); padding-top: 20px; font-size: 14px; color: var(--muted); }
+footer ul { padding-left: 20px; margin: 8px 0 0; }
+a { color: var(--teal); }
+a:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+</style>
+
+<main>
+  <header>
+    <span class="eyebrow">과제 3 · 의학·보건 분야 확률과 통계 사례</span>
+    <h1>한국·미국 성인 비만 통계 정리 대화록</h1>
+    <p class="meta">질문: 학생 · 답변: Claude (AI) · 2026년 11월</p>
+    <p class="note">과제용 인포그래픽과 보고서를 준비하면서 AI와 나눈 대화를 질문과 답변 형식으로 정리했습니다. 자료를 내려받는 과정에서 생긴 기술적인 오류와 재시도 내용은 뺐고, 답변은 핵심만 남겨 요약했습니다.</p>
+  </header>
+
+  <!-- 1 -->
+  <section class="turn" aria-labelledby="q1">
+    <div class="q">
+      <span class="label" id="q1">질문 1</span>
+      <p>첨부한 링크는 대한민국과 미국의 연도별 비만 유병률 자료야. 이를 이용해서 대한민국 비만 현황 파악을 위한 인포그래픽으로 만들고 싶어. 리포트에 첨부할 NotebookLM용 자료로 만들어 줘.</p>
+      <p>리포트의 주요 논지는</p>
+      <ol>
+        <li>비만은 얼마나 흔하며, 어떤 집단에서 높게 나타나는가?</li>
+        <li>대상 선정 방식 → 비만 여부 분류 → 집단별 유병률</li>
+        <li>국가별 사례와 차이</li>
+        <li>평균으로는 알 수 없는 차이를 통계를 통해 파악한다</li>
+      </ol>
+      <p class="small">첨부: 주간 건강과 질병(PHWR) 19권 8호, 미국 CDC NCHS Data Brief No. 508</p>
+    </div>
+
+    <div class="a">
+      <span class="label">답변 1</span>
+      <p>두 자료와 질병관리청 「2025년 국민건강영양조사」 보도자료를 바탕으로, 네 가지 논지 순서에 맞춘 NotebookLM용 자료를 만들었어요.</p>
+
+      <h3>① 비만은 얼마나 흔한가?</h3>
+      <p>한국 성인 비만 유병률은 2025년 <strong>39.5%</strong>(19세 이상, BMI 25 이상)이고, 미국은 2021년 8월–2023년 8월 <strong>40.3%</strong>(20세 이상, BMI 30 이상)예요. 둘 다 성인 10명 중 4명꼴이에요.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>한국 2025년 성별·연령별 비만 유병률 (%)</caption>
+          <thead><tr><th>연령</th><th>19–29</th><th>30대</th><th>40대</th><th>50대</th><th>60대</th><th>70+</th></tr></thead>
+          <tbody>
+            <tr><td>남자</td><td>41.7</td><td><strong>59.0</strong></td><td>53.3</td><td>54.0</td><td>38.5</td><td>32.4</td></tr>
+            <tr><td>여자</td><td>21.3</td><td>28.3</td><td>31.6</td><td>28.9</td><td>32.8</td><td><strong>38.6</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li>한국은 30~50대 남자의 절반 이상이 비만이에요. 남자는 30대가 가장 높고, 여자는 나이가 들수록 높아져서 70세 이상이 가장 높아요.</li>
+        <li>미국은 40–59세가 46.4%로 가장 높아요. 남녀 차이(남 39.2%, 여 41.3%)는 통계적으로 유의하지 않아요.</li>
+        <li>미국은 학사 학위 이상이 31.6%로, 고졸 이하(44.6%)와 대학 중퇴·전문대(45.0%)보다 낮아요.</li>
+        <li>미국 고도비만(BMI 40 이상)은 9.4%이고, 여자 12.1%, 남자 6.7%로 모든 연령대에서 여자가 높아요.</li>
+      </ul>
+
+      <h3>② 대상 선정 → 비만 분류 → 집단별 유병률</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>단계</th><th style="text-align:left">한국 (국민건강영양조사)</th><th style="text-align:left">미국 (NHANES)</th></tr></thead>
+          <tbody>
+            <tr><td>대상 선정</td><td style="text-align:left;white-space:normal">매년 192개 지역 4,800가구, 1세 이상 가구원 약 1만 명</td><td style="text-align:left;white-space:normal">다단계 확률표본. 20세 이상 5,929명 분석</td></tr>
+            <tr><td>제외</td><td style="text-align:left;white-space:normal">보도자료에 따로 적혀 있지 않음</td><td style="text-align:left;white-space:normal">임신부, 키·몸무게 측정값이 없는 사람</td></tr>
+            <tr><td>측정</td><td style="text-align:left;white-space:normal">이동검진차량에서 직접 측정</td><td style="text-align:left;white-space:normal">이동검진센터에서 직접 측정</td></tr>
+            <tr><td>분류</td><td style="text-align:left;white-space:normal">BMI 25 이상 비만</td><td style="text-align:left;white-space:normal">BMI 30 이상 비만, 40 이상 고도비만</td></tr>
+            <tr><td>보정</td><td style="text-align:left;white-space:normal">2005년 추계인구로 연령 표준화</td><td style="text-align:left;white-space:normal">2000년 미국 인구로 연령 보정, 가중치 적용, t 검정(유의수준 0.05)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>③ 나라별 차이</h3>
+      <div class="warn">39.5%와 40.3%를 나란히 놓고 "한국도 미국만큼 비만이다"라고 읽으면 틀려요. 한국은 BMI 25 이상, 미국은 BMI 30 이상을 비만으로 봐요. 대상 연령과 연령 표준화에 쓴 기준 인구도 달라요. 비교할 것은 숫자 자체보다 "어떤 집단에서 높은가"라는 패턴이에요.</div>
+      <ul>
+        <li>미국 비만율은 2013–2014년 37.7%에서 2021–2023년 40.3%로, 10년 동안 통계적으로 유의한 변화가 없었어요.</li>
+        <li>같은 기간 미국 고도비만은 7.7%에서 9.7%로 유의하게 늘었어요.</li>
+      </ul>
+
+      <h3>④ 평균으로는 알 수 없는 차이</h3>
+      <ul>
+        <li>한국 성인 39.5%를 남녀로 나누면 49.1%와 28.7%로, 20.4%p 차이가 나요.</li>
+        <li>한국 20대 여자는 비만이 21.3%인데, 저체중도 19.9%예요. 한 집단 안에서 양쪽 끝이 모두 많아요.</li>
+        <li>미국은 전체 비만율이 그대로인 동안 고도비만이 늘었어요. 평균은 그대로인데 분포의 꼬리가 두꺼워진 거예요.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="turn" aria-labelledby="q2">
+    <div class="q">
+      <span class="label" id="q2">질문 2</span>
+      <p>[PHWR 논문 그림 2장 첨부: 2015–2024년 연도별 비만 유병률 추이, 2024년 연령대별 비만 유병률] PDF는 아니고 사진자료</p>
+    </div>
+
+    <div class="a">
+      <span class="label">답변 2</span>
+      <p>그림 속 숫자를 모두 옮겨서 자료를 완성했어요. 그림의 2016년 34.8%와 2024년 연령별 남녀 수치가 질병관리청 보도자료 숫자와 같아서 서로 맞는지도 확인했어요.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>한국 성인 비만 유병률 추이 (%, 19세 이상)</caption>
+          <thead><tr><th>연도</th><th>2015</th><th>2016</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th></tr></thead>
+          <tbody>
+            <tr><td>전체</td><td>33.2</td><td>34.8</td><td>34.1</td><td>34.6</td><td>33.8</td><td>38.3</td><td>37.1</td><td>37.2</td><td>37.2</td><td>38.1</td></tr>
+            <tr><td>남자</td><td>39.7</td><td>42.2</td><td>41.6</td><td>42.8</td><td>41.8</td><td>48.0</td><td>46.3</td><td>47.7</td><td>45.6</td><td><strong>48.8</strong></td></tr>
+            <tr><td>여자</td><td>25.9</td><td>26.4</td><td>25.6</td><td>25.5</td><td>25.0</td><td>27.7</td><td>26.9</td><td>25.7</td><td>27.8</td><td>26.2</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <caption>한국 2024년 연령대별 비만 유병률 (%)</caption>
+          <thead><tr><th>연령</th><th>19–29</th><th>30–39</th><th>40–49</th><th>50–59</th><th>60–69</th><th>70+</th></tr></thead>
+          <tbody>
+            <tr><td>전체</td><td>33.5</td><td>37.9</td><td><strong>44.1</strong></td><td>38.0</td><td>37.5</td><td>35.3</td></tr>
+            <tr><td>남자</td><td>44.8</td><td>49.1</td><td><strong>61.7</strong></td><td>48.1</td><td>41.7</td><td>31.4</td></tr>
+            <tr><td>여자</td><td>20.4</td><td>24.6</td><td>25.7</td><td>27.9</td><td>33.5</td><td><strong>38.3</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>새로 보이는 점</h3>
+      <ul>
+        <li><strong>늘어난 비만은 거의 다 남자예요.</strong> 2015년부터 2024년까지 남자는 9.1%p(39.7 → 48.8) 늘었고, 여자는 0.3%p(25.9 → 26.2)만 늘었어요. 남녀 격차는 13.8%p에서 22.6%p로 벌어졌어요.</li>
+        <li><strong>2024년 40대 평균은 44.1%예요.</strong> 하지만 남자 61.7%, 여자 25.7%로 36.0%p나 차이 나요.</li>
+        <li><strong>70세 이상에서는 순서가 뒤집혀요.</strong> 여자 38.3%, 남자 31.4%로 여자가 더 높아요.</li>
+        <li><strong>2019년에서 2020년 사이에 크게 뛰었어요</strong> (전체 33.8 → 38.3). 코로나19 유행 시기와 겹치지만, 원인은 이 자료만으로 알 수 없어요. 그러니 보고서에서 "코로나 때문에 늘었다"고 단정하지 않는 게 좋아요.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="turn" aria-labelledby="q3">
+    <div class="q">
+      <span class="label" id="q3">질문 3</span>
+      <p>[보고서 초안 PDF 첨부: 인포그래픽 「평균 뒤에 숨겨진 한·미 비만 통계의 실체」와 본문 1)~4)] 초안 써봤는데 확인해 줘.</p>
+    </div>
+
+    <div class="a">
+      <span class="label">답변 3</span>
+      <p>4가지 논지가 순서대로 들어가 있고, "기준이 달라서 그대로 비교하면 안 된다"는 핵심도 제대로 짚었어요. 숫자도 거의 다 원문과 맞아요. 고칠 점을 중요한 것부터 정리했어요.</p>
+
+      <h3>꼭 고칠 것</h3>
+      <ol>
+        <li><strong>출처에 질병관리청 보도자료를 추가하세요.</strong> 본문의 39.5%, 30대 남성 59.0%, 70세 이상 여성 38.6%, 20대 여성 저체중 약 20%, 4,800가구는 PHWR 논문이 아니라 「2025년 국민건강영양조사」 보도자료(2026.9.30.)에 나오는 숫자예요.</li>
+        <li><strong>출처 이름의 오타를 고치세요.</strong> "PWRG"가 아니라 『주간 건강과 질병(PHWR)』 19권 8호(김보람, 2026.3.5.)예요.</li>
+        <li><strong>인포그래픽의 "대졸자 비만 감소"는 틀린 표현이에요.</strong> "감소"는 시간이 지나며 줄었다는 뜻이에요. 원문은 다른 학력 집단보다 "낮다"는 뜻이라서 "대졸자 비만율 낮음"으로 바꿔야 해요. 고졸 이하 44.6%, 대학 중퇴·전문대 45.0% 막대를 옆에 두면 비교가 잘 보여요.</li>
+        <li><strong>"남성은 30대에서 가장 높았다"에 연도를 붙이세요.</strong> 2025년 보도자료로는 맞지만, PHWR의 2024년 그림에서는 40대 남성(61.7%)이 가장 높아요. "2025년 기준"이라고 적어야 두 자료가 모순돼 보이지 않아요.</li>
+      </ol>
+
+      <h3>고치면 더 좋은 것</h3>
+      <ul>
+        <li><strong>단위를 맞추세요.</strong> "한국 4,800가구"와 "미국 약 6,000명"은 단위가 달라요. 한국도 "가구원 약 1만 명"을 함께 적어 주세요. 미국이 임신부와 측정값이 없는 사람을 뺐다는 점도 대상 선정 단계에 넣으면 좋아요.</li>
+        <li><strong>통계 개념을 구체적인 예로 보여주세요.</strong> 과제가 "확률 및 통계"라서 이 예가 잘 맞아요. 미국 남성 39.2%와 여성 41.3%는 2.1%p 차이가 나지만, 표준오차가 약 2%p라서 통계적으로 유의한 차이가 아니었어요(유의수준 0.05). 숫자가 다르다고 진짜 다른 건 아니라는 점을 보여줘요.</li>
+        <li><strong>남성 증가에 숫자를 붙이세요.</strong> 남성은 39.7%에서 48.8%로 9.1%p 늘었고, 여성은 25.9%에서 26.2%로 거의 변화가 없었어요.</li>
+        <li><strong>자잘한 표현을 다듬으세요.</strong> "70대"는 "70세 이상"으로, "대졸 이상"은 "학사 학위 이상"으로 바꿔 주세요. "연령이 높아질수록 낮아지는"은 "대체로 낮아지는"으로 쓰는 게 정확해요. 50대(54.0%)가 40대(53.3%)보다 살짝 높거든요.</li>
+      </ul>
+
+      <h3>잘한 점</h3>
+      <ul>
+        <li>"매년 빠짐없이 증가한 것은 아니므로 전체적인 변화 방향으로 이해"라는 문장으로, 오르내림이 있는 추이를 정확하게 읽었어요.</li>
+        <li>"모든 표의 수치에 연령표준화가 적용되는 것은 아니다"라는 지적도 정확해요. 전체 값은 표준화한 값이고, 연령별 값은 조율이에요.</li>
+        <li>고도비만 1.8배는 12.1 ÷ 6.7 = 1.81이라서 계산이 정확해요.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <strong>대화에서 사용한 자료</strong>
+    <ul>
+      <li>김보람. 비만 유병률 추이, 2015–2024년. 주간 건강과 질병(PHWR) 2026;19(8):397–398. <a href="https://doi.org/10.56786/PHWR.2026.19.8.3">doi.org/10.56786/PHWR.2026.19.8.3</a></li>
+      <li>질병관리청. 「2025년 국민건강영양조사 결과 발표」 보도자료. 2026.9.30. <a href="https://www.kdca.go.kr/bbs/kdca/42/310041/download.do">kdca.go.kr</a></li>
+      <li>Emmerich SD, Fryar CD, Stierman B, Ogden CL. Obesity and Severe Obesity Prevalence in Adults: United States, August 2021–August 2023. NCHS Data Brief No. 508. 2024. <a href="https://www.cdc.gov/nchs/products/databriefs/db508.htm">cdc.gov</a></li>
+    </ul>
+  </footer>
+</main>
